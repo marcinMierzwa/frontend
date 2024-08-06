@@ -1,1 +1,8 @@
-<p class="text-5xl bg-slate-300">home works!</p>
+<h1>Welcome to my store !</h1>
+
+@if (User$ | async; as User) {
+<p>{{ User.email}}</p>
+} @else {
+<p>access Token has expired</p>
+}
+<p>Is logged in : {{ isLoggedIn() }}</p>
