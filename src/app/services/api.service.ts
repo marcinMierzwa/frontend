@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignUpUserResponse } from '../models/sign-up-user-response';
 import { User } from '../models/user-model';
@@ -11,6 +11,10 @@ import { UserResponse } from '../models/user-response';
 })
 export class ApiService {
   http: HttpClient = inject(HttpClient);
+  isAuthenticated = signal<boolean>(false);
+  accessToken = signal<string>('');
+
+
 
   // #SignUp
   signUp(formData: User): Observable<SignUpUserResponse> {
@@ -33,17 +37,18 @@ export class ApiService {
     return this.http.get<UserResponse>('http://localhost:3000/auth/user');
 }
 
+refresh():any {
+  return this.http.post('http://localhost:3000/auth/refresh', {}, {withCredentials: true} 
+   )
+ }
+
+
+
 // #logout
 
-logout(): void {
-  localStorage.removeItem('accessToken')
-}
 
 // #isLoggedIn
 
-isLoggedIn(): boolean{
-  return localStorage.getItem('accessToken') !== null;
-}
 
 }
 

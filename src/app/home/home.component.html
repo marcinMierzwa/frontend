@@ -1,8 +1,13 @@
-<h1>Welcome to my store !</h1>
+<div class="min-h-screen flex flex-col p-2">
 
-@if (User$ | async; as User) {
-<p>{{ User.email}}</p>
-} @else {
-<p>access Token has expired</p>
-}
-<p>Is logged in : {{ isLoggedIn() }}</p>
+    <header class="px-3">
+        <app-navbar />
+    </header>
+
+<main class="px-3 py-4">
+    <h1>Welcome to my store !</h1>
+</main>
+
+</div>
+
+

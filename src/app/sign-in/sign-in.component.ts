@@ -29,9 +29,9 @@ export class SignInComponent {
     this.api.signIn(formData)
     .subscribe({
       next: (res: SignInUserResponse) => {
-        console.log(`succesful logged in user id ${res.userId}`);
-        localStorage.setItem('accessToken', res.accessToken);
-        this.router.navigateByUrl('home')
+        this.api.accessToken.set(res.accessToken);
+        this.api.isAuthenticated.set(true);
+        this.router.navigateByUrl('home');
         },
       error: (err) => 
         console.log(err.error.message)
