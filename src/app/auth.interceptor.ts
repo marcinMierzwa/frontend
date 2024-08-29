@@ -13,13 +13,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   });
   return next(cloneRequest).pipe(catchError((err: HttpErrorResponse) => {
     if(err.status === 401) {
-      return apiService.refresh()
-      .pipe(
-        switchMap((res) => {
-          console.log(res);
+      // return apiService.refresh()
+      // .pipe(
+      //   switchMap((res) => {
+      //     console.log(res);
           
-        })
-      )
+      //   })
+      // )
 
     }
     return throwError(() => err);
